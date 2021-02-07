@@ -1,0 +1,73 @@
+{% extends "layout.html" %} {% block content%}
+
+<div>
+    <h3>Let's Start by Importing Our DataSet!</h3>
+    <hr /> {% if alert%}
+    <div class="alert alert-warning" role="alert" id="{{alert}}">{{alert}}</div>
+    {% endif %}
+
+    <!-- Button trigger modal -->
+    <button id="showDfHead" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#displayColumsModal">
+        Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="displayColumsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Dataframe Head</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped table-bordered table-hover table-sm">
+                        <thead class="thead-dark">
+                            <tr>
+                                {% for column in dfHead%}
+                                <th scope="col"><small>{{column}}</small></th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for column in dfHead.values%}
+                            <tr>
+                                {% for i in range(0, length) %}
+                                <td><small>{{ column[i] }}</small></td>
+                                {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Okay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <p>{{dfHead.keys}}</p> -->
+    <!-- <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                {% for column in dfHead%}
+                <th scope="col">{{column}}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for column in dfHead.values%}
+            <tr>
+                {% for i in range(0, length) %}
+                <td>{{ column[i] }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table> -->
+</div>
+{% endblock %}

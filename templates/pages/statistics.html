@@ -1,0 +1,146 @@
+{% extends "layout.html" %} {% block content%}
+<div>
+    <h3>Let's Display Database Statistics</h3>
+    <!-- <br/> {{ info | safe}} -->
+    <hr>
+
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#displayMinModal">
+            Display Min Values
+        </button> &nbsp; &nbsp;
+
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#displayMaxModal">
+            Display Max Values
+        </button> &nbsp; &nbsp;
+
+    </div> <br> <br><br>
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#displayCorrModal">
+            Print Corr
+        </button> &nbsp; &nbsp;
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#displayMeanModal">
+            Print Mean
+        </button> &nbsp; &nbsp;
+    </div>
+
+    <div class="modal fade" id="displayMinModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">These are the Min values of the dataset</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped table-hover table-sm">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Column</th>
+                                <th scope="col">Value</th>
+                            </tr>
+                        </thead>
+                        {% for column in min%}
+                        <tbody>
+                            <tr>
+                                <th scope="row">{{column}}</th>
+                                <td>{{ min[column] }}</td>
+                                {% endfor %}
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="displayMaxModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">These are the Max values of the dataset</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped table-hover table-sm">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Column</th>
+                                <th scope="col">Max Value</th>
+                            </tr>
+                        </thead>
+                        {% for column in max%}
+                        <tbody>
+                            <tr>
+                                <th scope="row">{{column}}</th>
+                                <td>{{ max[column] }}</td>
+                                {% endfor %}
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="displayMeanModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">These are the Mean values of the dataset</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped table-hover table-sm">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Column</th>
+                                <th scope="col">Mean Value</th>
+                            </tr>
+                        </thead>
+                        {% for column in mean%}
+                        <tbody>
+                            <tr>
+                                <th scope="row">{{column}}</th>
+                                <td>{{ mean[column] }}</td>
+                                {% endfor %}
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="displayCorrModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Corr of Dataset</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{corr | safe}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}

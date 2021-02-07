@@ -1,0 +1,21 @@
+{% extends "head.html" %} {% block bTable %}
+<table class="table table-striped table-bordered table-hover table-sm">
+    <thead class="thead-dark">
+        <tr>
+            {% for column in dfHead%}
+            <th scope="col"><small>{{column}}</small></th>
+            {% endfor %}
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for column in dfHead.values%}
+        <tr>
+            {% for i in range(0, length) %}
+            <td><small>{{ column[i] }}</small></td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

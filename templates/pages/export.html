@@ -1,0 +1,31 @@
+{% extends "layout.html" %} {% block content%}
+
+<div id="">
+    <h3>{{state}}. Let's Export Our DataSet!</h3>
+    <hr> {% if alert%}
+    <div class="alert alert-warning" role="alert" id={{alert}}>
+        {{alert}}
+    </div>
+    {% endif %}
+    <div>
+        <form class="text-center form-group" action="{{url_for('export_dataset')}}" method="post">
+            <div class="form-row align-items-center">
+                <!-- <div class="co"> --><label>Enter dataset full path to Export</label>
+                <div class="input-group">
+                    <input type="text" required name="file-path" class="form-control mb-2" id="" placeholder="Enter full path to upload dataset"> &nbsp;
+                    <select name="type" class="form-select form-control mb-2" id="datasetTypeSelector" aria-label="Select dataset type" required>
+                        <option value="1">csv</option>
+                        <option value="2">excel</option>
+                        <option value="3">json</option>
+                    </select>
+                </div>
+                <!-- </div> -->
+                <br><br>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary mb-2">Export Dataset</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

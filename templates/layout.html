@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=auto, initial-scale=1.0">
+    <title>Visualize</title>
+</head>
+<link href="{{url_for('static', filename = 'css/bootstrap.css')}}" rel="stylesheet">
+
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+
+            <a class="navbar-brand" href="{{url_for('index')}}">Visualize</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{url_for('index')}}">Import and View <span class="sr-only"></span></a>
+                    </li>
+                </ul>
+                <!-- <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('view')}}">View <span class="sr-only"></span></a>
+                    </li>
+                </ul> -->
+                <!-- <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('data')}}">Data <span class="sr-only"></span></a>
+                    </li>
+                </ul> -->
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('statistics')}}">Statistics <span class="sr-only"></span></a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('plot')}}">Plot <span class="sr-only"></span></a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('export')}}">Export <span class="sr-only"></span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div style="margin-top:22px" class="text-center">
+            <br>
+            <input type="hidden" id="check-state" value={{state}}>
+            <input type="hidden" id="check-sub-state" value={{sub_state}}>
+            <p>Step: {{state}}</p>
+            <div class="row">
+
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <br>
+                    <hr> {% block content %}{% endblock %}
+                    <div class="col-md-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+<script src="{{url_for('static', filename = 'js/jquery.js')}}"></script>
+<script src="{{url_for('static', filename = 'js/bootstrap.js')}}"></script>
+<script src="{{url_for('static', filename = 'js/manipulate.js')}}"></script>
+
+</html>

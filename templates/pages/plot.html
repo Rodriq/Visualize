@@ -1,0 +1,71 @@
+{% extends "layout.html" %} {% block content%}
+<div>
+    <h3>Plot Any Columns</h3>
+    <hr> {% if alert%}
+    <div class="alert alert-warning" role="alert" id={{alert}}>
+        {{alert}}
+    </div>
+    {% endif %}
+    <div class="text-center">
+        <form class="text-center form-group" action="{{url_for('plot_graph')}}" method="post">
+            <div class="form-row align-items-center">
+                <div class="co"><label>Select any two colums(X, Y) and a graph type to Plot</label>
+                    <div class="input-group">
+                        <!-- <input type="text" required name="file-path" class="form-control mb-2" id="" placeholder="Enter full path to upload dataset"> &nbsp; -->
+                        <select name="column1" class="form-select form-control mb-2" id="datasetTypeSelector" aria-label="Select dataset type" required>
+                            {% for column in data_columns %}
+                            <option value={{column}}>{{column}}</option>
+                            {% endfor %}
+                        </select> &nbsp;
+                        <select name="column2" class="form-select form-control mb-2" id="datasetTypeSelector" aria-label="Select dataset type" required>
+                            {% for column in data_columns %}
+                            <option value={{column}}>{{column}}</option>
+                            {% endfor %}
+                        </select> &nbsp;
+                        <select name="type" class="form-select form-control mb-2" id="datasetTypeSelector" aria-label="Select dataset type" required>
+                            <option value="1">line</option>
+                            <option value="2">scatter</option>
+                            <option value="3">bar</option>
+                            <option value="4">histogram</option>
+                        </select>
+                    </div>
+                </div>
+                <br><br>
+                <div class="text-center col-md-10" style="text-align: center;">
+                    <button type="submit" class="btn btn-primary mb-2">Plot Graph</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal fade" id="displayGraph" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Your Plot</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {% if path is defined %}
+                    <div class="card" style="width: auto">
+                        <img src="{{path}}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text">Here is your data plot of the corresponding tables
+                            </p>
+                        </div>
+                    </div>
+                    <!-- <p>{{path}}</p> -->
+                    {% endif %}
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Okay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
